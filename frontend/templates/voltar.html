@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parabéns</title>
+    <link rel="stylesheet" href="">
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #1e1e2f;
+           
+            overflow: hidden; 
+        }
+        
+      
+        .container {
+            text-align: center;
+            color: #fff;
+            position: relative;
+            z-index: 10;
+            padding: 2rem;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            color: #fff700; 
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        p {
+            font-size: 1.5rem;
+            color: #ffdd57;
+            margin-top: 1rem;
+        }
+        
+        .divbtn{
+            
+            margin-left: 400px;
+            margin-top: 200px;
+
+          
+            
+        }
+
+        .btn{
+            width: 220px;
+            height: 65px;
+            border: solid 1px gray;
+            background: none;
+            font-size: 25px;
+            font-weight: bold;
+            position: absolute;
+    
+       
+        }
+
+        .bt1{
+            background-color: aqua;
+            color: #212146;
+            border-radius: 30px;
+        }
+
+        .bt2{
+            background-color: aqua;
+            color: #212146;
+            border-radius: 30px;
+        }
+
+        
+        
+        </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 Parabéns! 🎉</h1>
+        <p>Você conquistou moedas!</p>
+        <div class="coins"></div>
+        
+    </div>
+    <form action="/progresso" method="get">  
+        <div class="divbtn"><button type="submit" class="btn bt1">Seu progresso</button>
+    </form>
+
+    <form action="/voltar">
+        <div class="divbtn"><button type="submit" class="btn bt2">Voltar</button>
+
+    </form>
+</body>
+</html>

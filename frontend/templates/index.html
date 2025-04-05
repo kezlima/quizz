@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <style>
+ body {
+    background-color: #1e1e2f; 
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Usa a altura total da tela */
+    margin: 0;
+    flex-direction: column; /* Faz o conteúdo ficar em coluna */
+}
+
+.container {
+    background-color: #282a36; 
+    border-radius: 15px;
+    padding: 1.5rem; /* Maior preenchimento para garantir um bom espaçamento */
+    width: 100%;
+    max-width: 280px; /* Tamanho do formulário mais compacto */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin-top: 20px; /* Pequeno espaço entre o título e o formulário */
+}
+
+h1 {
+    color: #c792ea;
+    margin-bottom: 1rem; /* Espaço abaixo do título */
+    font-size: 1.5rem; /* Tamanho do título ajustado */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+select, input[type="submit"] {
+    padding: 0.5rem; /* Menor preenchimento para os campos */
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background-color: #444;
+    color: white;
+    outline: none;
+}
+
+select:focus, input[type="submit"]:hover {
+    background-color: #3a3b4d;
+}
+
+input[type="submit"] {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #c792ea;
+}
+
+    </style>
+</head>
+<body>
+    <h1>bem vindo! informe sua função</h1>
+    <form action="/funcao" method="post">
+        <select name="tipo" id="">
+            <option value="professor">professor</option>
+            <option value="aluno">aluno</option>
+        </select>
+        <input type="submit" value="enviar">
+    </form>
+</body>
+</html>

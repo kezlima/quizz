@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+    background-color: #1e1e2f; 
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+form{
+    background-color: rgb(79, 54, 102);
+    margin-top: 300px;
+    width: 600px;
+    height: 200px;
+    border-radius: 10px;
+}
+input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    
+    justify-content: space-between;
+    border-radius: 8px;
+    background-color: #44475a;
+    color: #f8f8f2;
+    font-size:20px;
+    outline: none;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+
+input, label{
+    color: aliceblue;
+    font-size: 20px;
+    margin-left: 40px;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+input[type="submit"] {
+    width: 80%;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #c792ea; 
+    margin-top: 40px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-left: 20px;
+}
+input[type="submit"]:hover {
+    background-color: #8f5de7; 
+}
+    </style>
+    
+</head>
+<body>
+    <form action="/moedas" method="post">
+       
+        <label for="">Digite seu cpf:</label>
+        <input type="text" name="cpf" required>
+        
+        <input type="submit" value="validar">
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+    
+        ul {
+            padding: 0;
+        }
+    
+        li {
+            background: #fff;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+<ul class="">
+        <h1>Bimestre 1</h1>
+        {% for material in percurso1 %}
+            <li>
+               
+                titulo: {{ material[0] }}, 
+                <a href="{{ material[1]}}" target="_blank">Acessar Material</a>
+
+                id do percurso: {{ material[2] }}, 
+                etapa do percuso: {{ material[3] }},
+            </li>
+        {% endfor %}
+    </ul>
+
+    <ul class="">
+        <h1>Bimestre 2</h1>
+        {% for material in percurso2 %}
+            <li>
+               
+                titulo: {{ material[0] }}, 
+                <a href="{{ material[1] }}" target="_blank">Acessar Material</a>
+
+                id do percurso: {{ material[2] }}, 
+                etapa do percuso: {{ material[3] }},
+            </li>
+        {% endfor %}
+    </ul>
+
+    <ul class="">
+        <h1>Bimestre 3</h1>
+        {% for material in percurso3 %}
+            <li>
+               
+                titulo: {{ material[0] }}, 
+                <a href="{{ material[1] }}" target="_blank">Acessar Material</a>
+
+                id do percurso: {{ material[2] }}, 
+                etapa do percuso: {{ material[3] }},
+            </li>
+        {% endfor %}
+    </ul>
+
+    <ul class="">
+        <h1>Bimestre 4</h1>
+        {% for material in percurso4 %}
+            <li>
+               
+                titulo: {{ material[0] }}, 
+                <a href="{{ material[1] }}" target="_blank">Acessar Material</a>
+
+                id do percurso: {{ material[2] }}, 
+                etapa do percuso: {{ material[3] }},
+            </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
+
+    </ul>
+</body>
+</html>

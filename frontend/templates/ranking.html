@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+    
+        ul {
+            padding: 0;
+        }
+    
+        li {
+            background: #fff;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Ranking dos Alunos</h1>
+    <ul class="">
+        {% for aluno in ranking %}
+            <li>   
+                Nome do Aluno: {{ aluno[0] }}, 
+                total de moedas: {{ aluno[1] }}, 
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

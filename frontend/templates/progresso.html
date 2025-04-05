@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trajetória com Botões</title>
+    <link rel="stylesheet" href="static/css/progresso.css">
+</head>
+<body>
+    <div class="trajetoria-container">
+        <div class="trajetoria">
+            
+            {% for material in materiais %}
+                <div class="botao {% if material[0] in materiais_vistos %}visto{% endif %}">
+                    {{ loop.index }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% if ponto_atual == materiais|length %}
+        <div id="trofeu">
+            <p class="vitoria">🎉 Parabéns! Você concluiu a trajetória! 🎉</p>
+        </div>
+    {% endif %}
+    <form action="/voltar" method="get">
+        <button class="voltar">Voltar</button>
+    </form>
+</body>
+</html>

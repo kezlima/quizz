@@ -1,0 +1,6 @@
+{
+    "database": "progame",
+    "user": "root",
+    "pass": "senha",
+    "host": "127.0.0.1"
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materiais</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        ul {
+            padding: 0;
+        }
+
+        li {
+            background: #fff;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Define o fundo verde para os materiais já visualizados */
+        .visto {
+            background: lightgreen !important;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Quantidade de moedas: {{ moedas }}</h1>
+
+<ul>
+    <h1>Bimestre 1</h1>
+    {% for material in percurso1 %}
+        <li class="{% if material[2] in materiais_vistos %}visto{% endif %}">
+            <strong>Título:</strong> {{ material[0] }},
+            <strong>Conteúdo:</strong> <a href="{{ material[1] }}" target="_blank">Acessar Material</a>,
+            <strong>id do material:</strong> {{ material[2] }},
+
+          
+            {% if material[2] not in materiais_vistos %}
+            <form action="/moedas" method="post">
+                <input type="hidden" name="id_material" value="{{ material[2] }}">
+
+                <button type="submit">+10 moedas</button>
+            </form>
+            {% else %}
+            <p>✅ Moedas já recebidas</p>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+<ul>
+    <h1>Bimestre 2</h1>
+    {% for material in percurso2 %}
+        <li class="{% if material[2] in materiais_vistos %}visto{% endif %}">
+            <strong>Título:</strong> {{ material[0] }},
+            <strong>Conteúdo:</strong> <a href="{{ material[1] }}" target="_blank">Acessar Material</a>,          
+            <strong>id do material:</strong> {{ material[2] }},
+
+
+            {% if material[2] not in materiais_vistos %}
+            <form action="/moedas" method="post">
+                <input type="hidden" name="id_material" value="{{ material[2] }}">
+                <button type="submit">+10 moedas</button>
+            </form>
+            {% else %}
+            <p>✅ Moedas já recebidas</p>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+<ul>
+    <h1>Bimestre 3</h1>
+    {% for material in percurso3 %}
+        <li class="{% if material[2] in materiais_vistos %}visto{% endif %}">
+            <strong>Título:</strong> {{ material[0] }},
+            <strong>Conteúdo:</strong> <a href="{{ material[1] }}" target="_blank">Acessar Material</a>,
+            <strong>id do material:</strong> {{ material[2] }},
+
+            {% if material[2] not in materiais_vistos %}
+            <form action="/moedas" method="post">
+                <input type="hidden" name="id_material" value="{{ material[2] }}">
+
+                <button type="submit">+10 moedas</button>
+            </form>
+            {% else %}
+            <p>✅ Moedas já recebidas</p>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+<ul>
+    <h1>Bimestre 4</h1>
+    {% for material in percurso4 %}
+        <li class="{% if material[2] in materiais_vistos %}visto{% endif %}">
+            <strong>Título:</strong> {{ material[1] }},
+            <strong>Conteúdo:</strong> <a href="{{ material[2] }}" target="_blank">Acessar Material</a>,
+            <strong>id do material:</strong> {{ material[2] }},
+
+            {% if material[2] not in materiais_vistos %}
+            <form action="/moedas" method="post">
+                <input type="hidden" name="id_material" value="{{ material[2] }}">
+                <button type="submit">+10 moedas</button>
+            </form>
+            {% else %}
+            <p>✅ Moedas já recebidas</p>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
