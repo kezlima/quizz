@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Materiais</title>
+    <link rel="stylesheet" href="../fontawesome/css/all.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -31,8 +32,9 @@
     </style>
 </head>
 <body>
-
+    <i class="fa-solid fa-coins"></i>
 <h1>Quantidade de moedas: {{ moedas }}</h1>
+<i class="fa-solid fa-coins"></i>
 
 <ul>
     <h1>Bimestre 1</h1>
@@ -54,6 +56,10 @@
             {% endif %}
         </li>
     {% endfor %}
+    <form action="/realizar_quiz" method="post">
+        <input type="hidden" name="id_percurso" value="1">
+        <button>Realizar quiz</button>
+    </form>  
 </ul>
 
 <ul>
@@ -75,6 +81,12 @@
             {% endif %}
         </li>
     {% endfor %}
+    <form action="/realizar_quiz" method="post">
+        <input type="hidden" name="id_percurso" value="2">
+
+        <button>Realizar quiz</button>
+    </form>
+   
 </ul>
 
 <ul>

@@ -6,6 +6,8 @@ from material_tragetoria import material_tragetoria
 from cadastro_login import cadastro_login
 from moedas import moedas
 from ranking import ranking 
+from quiz import quiz
+
 from  crud import createUpdateDelete
 import json
 app = Flask(__name__,template_folder='../frontend/templates', static_folder='../frontend/static')
@@ -44,3 +46,4 @@ app.register_blueprint(material_tragetoria)
 app.register_blueprint(cadastro_login) 
 app.register_blueprint(moedas) 
 app.register_blueprint(ranking) 
+app.register_blueprint(quiz)

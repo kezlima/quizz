@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultado do Quiz</title>
+    <style>
+        .correta {
+            background-color: #d4edda;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .errada {
+            background-color: #f8d7da;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form action="/voltar" method="get">
+        <button>Voltar</button>
+    </form>
+    <h2>Resultado do Quiz</h2>
+    <p>Você acertou {{ acertos }} de {{ total }} perguntas.</p>
+    <hr>
+
+    {% for r in resultados %}
+        <div class="{% if r.acertou %}correta{% else %}errada{% endif %}">
+            <p><strong>{{ loop.index }}. {{ r.enunciado }}</strong></p>
+            <p><strong>Sua resposta:</strong> {{ r.resposta_aluno or "Não respondeu" }}</p>
+            <p><strong>Resposta correta:</strong> {{ r.resposta_correta }}</p>
+        </div>
+        <br>
+    {% endfor %}
+</body>
+</html>
