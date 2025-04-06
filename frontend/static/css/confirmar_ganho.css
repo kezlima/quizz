@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="static/css/confirmar_ganho.css">
-
-    <style>
-        body {
+body {
     background-color: #1e1e2f; 
     margin: 0;
     padding: 0;
@@ -62,15 +53,3 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #8f5de7; 
 }
-    </style>
-    
-</head>
-<body>
-    <form action="/moedas" method="post">
-       
-        <label for="">Digite seu cpf:</label>
-        <input type="text" name="cpf" required>
-        
-        <input type="submit" value="validar">
-</body>
-</html>

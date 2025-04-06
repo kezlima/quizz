@@ -4,29 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-    
-        ul {
-            padding: 0;
-        }
-    
-        li {
-            background: #fff;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+    <link rel="stylesheet" href="static/css/exibindo_tragetoria.css">
+
 </head>
 <body>
-<ul class="">
+    <ul class="">
         <h1>Bimestre 1</h1>
         {% for material in percurso1 %}
             <li>
@@ -34,8 +16,7 @@
                 titulo: {{ material[0] }}, 
                 <a href="{{ material[1]}}" target="_blank">Acessar Material</a>
 
-                id do percurso: {{ material[2] }}, 
-                etapa do percuso: {{ material[3] }},
+            
             </li>
         {% endfor %}
     </ul>
@@ -48,8 +29,7 @@
                 titulo: {{ material[0] }}, 
                 <a href="{{ material[1] }}" target="_blank">Acessar Material</a>
 
-                id do percurso: {{ material[2] }}, 
-                etapa do percuso: {{ material[3] }},
+              
             </li>
         {% endfor %}
     </ul>
@@ -62,8 +42,7 @@
                 titulo: {{ material[0] }}, 
                 <a href="{{ material[1] }}" target="_blank">Acessar Material</a>
 
-                id do percurso: {{ material[2] }}, 
-                etapa do percuso: {{ material[3] }},
+        
             </li>
         {% endfor %}
     </ul>
@@ -76,8 +55,6 @@
                 titulo: {{ material[0] }}, 
                 <a href="{{ material[1] }}" target="_blank">Acessar Material</a>
 
-                id do percurso: {{ material[2] }}, 
-                etapa do percuso: {{ material[3] }},
             </li>
         {% endfor %}
     </ul>
@@ -85,6 +62,3 @@
 </body>
 </html>
 
-    </ul>
-</body>
-</html>

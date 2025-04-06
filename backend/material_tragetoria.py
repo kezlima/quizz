@@ -87,7 +87,7 @@ def inserindo_material():
     etapa=request.form['etapa']
 
     cursor=cnx.cursor()
-    sql="INSERT INTO material (titulo, conteudo, id_percurso,etapa) VALUES ( %s, %s, %s, %s) "
+    sql="INSERT INTO material (titulo, conteudo) VALUES ( %s, %s, %s, %s) "
     
     tupla=(titulo, conteudo, id_percurso, etapa)
     cursor.execute(sql, tupla)
