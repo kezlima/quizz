@@ -1,29 +1,28 @@
 body {
-    background-color: #1e1e2f; 
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Usa a altura total da tela */
+    height: 100vh; 
     margin: 0;
-    flex-direction: column; /* Faz o conteúdo ficar em coluna */
+    flex-direction: column; 
 }
 
 .container {
     background-color: #282a36; 
     border-radius: 15px;
-    padding: 1.5rem; /* Maior preenchimento para garantir um bom espaçamento */
+    padding: 1.5rem; 
     width: 100%;
-    max-width: 280px; /* Tamanho do formulário mais compacto */
+    max-width: 280px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    margin-top: 20px; /* Pequeno espaço entre o título e o formulário */
+    margin-top: 20px; 
 }
 
 h1 {
     color: #c792ea;
-    margin-bottom: 1rem; /* Espaço abaixo do título */
-    font-size: 1.5rem; /* Tamanho do título ajustado */
+    margin-bottom: 1rem; 
+    font-size: 1.5rem; 
 }
 
 form {
@@ -33,7 +32,7 @@ form {
 }
 
 select, input[type="submit"] {
-    padding: 0.5rem; /* Menor preenchimento para os campos */
+    padding: 0.5rem; 
     font-size: 1rem;
     border-radius: 8px;
     border: 1px solid #444;

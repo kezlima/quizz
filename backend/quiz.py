@@ -41,9 +41,6 @@ def adicionando_pergunta():
             'INSERT'
         )
 
-
-
-
     return render_template('adicionando_quiz.html')
 
 @quiz.route("/realizar_quiz", methods=["POST"])
@@ -91,3 +88,4 @@ def responder_quiz():
 
     return render_template("resultado.html", acertos=acertos, total=len(perguntas), resultados=resultados)
 
+#Esse e o certo
