@@ -1,4 +1,5 @@
 body {
+
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
@@ -20,7 +21,7 @@ body {
 }
 
 h1 {
-    color: #c792ea;
+    color: #241d0e;
     margin-bottom: 1rem; 
     font-size: 1.5rem; 
 }

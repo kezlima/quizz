@@ -10,7 +10,7 @@ from quiz import quiz
 
 from  crud import createUpdateDelete
 import json
-app = Flask(__name__,template_folder='../frontend/templates', static_folder='../frontend/static/img')
+app = Flask(__name__,template_folder='../frontend/templates', static_folder='../frontend/static')
 app.secret_key = 'sua_chave_secreta_unica_e_segura'
 try:
         with open('../banco de dados/progame.conf', 'r') as dadosbd: 

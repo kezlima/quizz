@@ -43,6 +43,8 @@ def adicionando_pergunta():
 
     return render_template('adicionando_quiz.html')
 
+
+
 @quiz.route("/realizar_quiz", methods=["POST"])
 def exibir_quiz():
     id_percurso=request.form['id_percurso']
