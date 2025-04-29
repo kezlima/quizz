@@ -3,6 +3,11 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 20px;
+    background-repeat: no-repeat;         /* não repetir a imagem */
+    background-size: cover;               /* cobre toda a tela proporcionalmente */
+    background-position: center center;
+   
+    
 }
 
 ul {

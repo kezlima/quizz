@@ -1,13 +1,16 @@
 body{
     font-family: 'Courier New', Courier, monospace;
-    background-color: #1e1e2f;
-    color: #f5f5f7;
-    margin: 0;
-    padding: 0;
+    background-image: url(/static/img/inicio.jpg);
+    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100vh; 
+    margin: 0;
+    flex-direction: column;
+    background-repeat: no-repeat;         /* não repetir a imagem */
+    background-size: cover;               /* cobre toda a tela proporcionalmente */
+    background-position: center center;
         }
 
 

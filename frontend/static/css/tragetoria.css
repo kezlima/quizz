@@ -8,6 +8,12 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
+    padding: 20px;
+    background-image: url(/static/img/bau.jpg); 
+    background-repeat: no-repeat;         /* não repetir a imagem */
+    background-size: cover;               /* cobre toda a tela proporcionalmente */
+    background-position: center center;
 }
 
 .container {
