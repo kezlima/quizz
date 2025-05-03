@@ -34,7 +34,7 @@ def cadastro_aluno():
 
     # Atualização
     update_query = """
-        UPDATE alunos
+        UPDATE aluno
         SET quant_moedas = 0, ponto_atual = 0
         WHERE quant_moedas IS NULL OR ponto_atual IS NULL
     """
