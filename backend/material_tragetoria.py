@@ -54,10 +54,10 @@ def ver_tragetorias():
     cursor=conn.cursor()
 
     queries = [
-        "SELECT  material.titulo, material.conteudo,  material.id FROM material WHERE material.id_percurso = 1 ORDER BY material.etapa ASC",
-        "SELECT  (material.titulo, material.conteudo, material.id) FROM material WHERE material.id_percurso = 2 ORDER BY material.etapa ASC",
-        "SELECT   material.titulo, material.conteudo, material.id FROM material WHERE material.id_percurso = 3 ORDER BY material.etapa ASC",
-        "SELECT   material.titulo, material.conteudo, material.id FROM material WHERE material.id_percurso = 4 ORDER BY material.etapa ASC"
+        "SELECT  material.titulo, material.conteudo,  material.id FROM material WHERE material.id_percurso = 1 ",
+        "SELECT  (material.titulo, material.conteudo, material.id) FROM material WHERE material.id_percurso = 2 ",
+        "SELECT   material.titulo, material.conteudo, material.id FROM material WHERE material.id_percurso = 3",
+        "SELECT   material.titulo, material.conteudo, material.id FROM material WHERE material.id_percurso = "
     ]
     results = []
     for query in queries:
@@ -115,10 +115,10 @@ def verficando_materiais():
         cursor=conn.cursor()
 
         queries = [
-        "SELECT  material.titulo, material.conteudo, material.id FROM material WHERE material.id_percurso = 1 ORDER BY material.etapa ASC",
-        "SELECT material.titulo, material.conteudo, material.id FROM material WHERE material.id_percurso = 2 ORDER BY material.etapa ASC",
-        "SELECT  material.titulo, material.conteudo, material.id FROM material WHERE material.id_percurso = 3 ORDER BY material.etapa ASC",
-        "SELECT  material.titulo, material.conteudo, material.id FROM material WHERE material.id_percurso = 4 ORDER BY material.etapa ASC"
+        "SELECT  material.titulo, material.conteudo, material.id FROM material WHERE material.id_percurso = 1 ",
+        "SELECT material.titulo, material.conteudo, material.id FROM material WHERE material.id_percurso = 2",
+        "SELECT  material.titulo, material.conteudo, material.id FROM material WHERE material.id_percurso = 3",
+        "SELECT  material.titulo, material.conteudo, material.id FROM material WHERE material.id_percurso = 4"
     ]
 
         results = [cursor.execute(query) or cursor.fetchall() for query in queries]
