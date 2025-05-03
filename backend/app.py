@@ -17,66 +17,72 @@ app.secret_key = 'sua_chave_secreta_unica_e_segura'
 
 
 try:
-        conn = psycopg2.connect(
+    conn = psycopg2.connect(
             host=os.environ['DB_HOST'],
             database=os.environ['DB_NAME'],
             user=os.environ['DB_USER'],
             password=os.environ['DB_PASSWORD']
         )
 
-        cursor = conn.cursor()
+    cursor = conn.cursor()
 
-        cursor.execute("""
-            CREATE TABLE IF NOT EXISTS aluno (
-               cpf VARCHAR(11) PRIMARY KEY,
-    nome VARCHAR(100),
-    quant_moedas INT DEFAULT 0,
-    ponto_atual INT DEFAULT 0
-        """)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS aluno (
+            cpf VARCHAR(11) PRIMARY KEY,
+            nome VARCHAR(100),
+            quant_moedas INT DEFAULT 0,
+            ponto_atual INT DEFAULT 0
+        );
+    """)
 
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS percurso (
+            id SERIAL PRIMARY KEY,
+            nome VARCHAR(100),
+            descricao VARCHAR(2000)
+        );
+    """)
 
-        cursor.execute= (  """  CREATE TABLE IF NOT EXISTS material ( 
-    id SERIAL PRIMARY KEY, 
-    titulo VARCHAR(100), 
-    conteudo VARCHAR(2000), 
-    id_percurso INT,
-    FOREIGN KEY (id_percurso) REFERENCES percurso(id)"""
-)
-        
-        cursor.execute= (  """  CREATE TABLE IF NOT EXISTS percurso ( 
-    id SERIAL PRIMARY KEY, 
-    nome VARCHAR(100), 
-    descricao VARCHAR(2000), 
-    """
-)
-        cursor.execute= (  """  CREATE TABLE IF NOT EXISTS aluno_material ( 
-    id SERIAL PRIMARY KEY, 
-    aluno_cpf varchar(11), 
-    id_material int, 
-    FOREIGN KEY (aluno_cpf) REFERENCES aluno(cpf),
-    FOREIGN KEY (id_material) REFERENCES material(id)"""
-)     
-        cursor.execute= (  """  CREATE TABLE IF NOT EXISTS pergunta_quiz ( 
-    id SERIAL PRIMARY KEY,
-    id_percurso INT NOT NULL,
-    pergunta TEXT,
-    opcao_a VARCHAR(255),
-    opcao_b VARCHAR(255),
-    opcao_c VARCHAR(255),
-    resposta_correta CHAR(1),
-    FOREIGN KEY (id_percurso) REFERENCES percurso(id)"""
-)     
-        
-        # Adicione aqui outras tabelas se quis
-        # cursor.execute(""" CREATE TABLE ... """)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS material (
+            id SERIAL PRIMARY KEY,
+            titulo VARCHAR(100),
+            conteudo VARCHAR(2000),
+            id_percurso INT,
+            FOREIGN KEY (id_percurso) REFERENCES percurso(id)
+        );
+    """)
 
-        conn.commit()
-        cursor.close()
-        conn.close()
-        print("Tabelas criadas com sucesso!")
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS aluno_material (
+            id SERIAL PRIMARY KEY,
+            aluno_cpf VARCHAR(11),
+            id_material INT,
+            FOREIGN KEY (aluno_cpf) REFERENCES aluno(cpf),
+            FOREIGN KEY (id_material) REFERENCES material(id)
+        );
+    """)
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS pergunta_quiz (
+            id SERIAL PRIMARY KEY,
+            id_percurso INT NOT NULL,
+            pergunta TEXT,
+            opcao_a VARCHAR(255),
+            opcao_b VARCHAR(255),
+            opcao_c VARCHAR(255),
+            resposta_correta CHAR(1),
+            FOREIGN KEY (id_percurso) REFERENCES percurso(id)
+        );
+    """)
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+    print("Tabelas criadas com sucesso!")
 
 except Exception as e:
-        print("Erro ao criar tabelas:", e)
+    print("Erro ao criar tabelas:", e)
 
 @app.route("/")
 def debug():
