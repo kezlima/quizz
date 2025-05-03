@@ -28,7 +28,7 @@ except Exception as e:
         print (f"FALHA NA CONEXÃO COM O BANCO: {e}")
 @app.route("/")
 def debug():
-    return send_file("index.html")  # Caminho direto ao arquivo
+    return render_template('index.html')
 
 
 @app.route('/funcao', methods=['POST'])
