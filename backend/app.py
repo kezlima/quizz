@@ -7,8 +7,10 @@ from cadastro_login import cadastro_login
 from moedas import moedas
 from ranking import ranking 
 from quiz import quiz
+from flask import send_file
 
-from  crud import createUpdateDelete
+
+from crud import createUpdateDelete
 import json
 app = Flask(__name__,template_folder='../frontend/templates', static_folder='../frontend/static')
 app.secret_key = 'sua_chave_secreta_unica_e_segura'
@@ -26,7 +28,7 @@ except Exception as e:
         print (f"FALHA NA CONEXÃO COM O BANCO: {e}")
 @app.route("/")
 def debug():
-    return render_template('index.html')
+    return send_file("index.html")  # Caminho direto ao arquivo
 
 
 @app.route('/funcao', methods=['POST'])
