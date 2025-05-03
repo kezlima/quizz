@@ -30,6 +30,7 @@ def cadastro_aluno():
     cpf=request.form['cpf']
     session['cpf_cadastro'] = cpf
 
+    cursor=cnx.cursor()
     insert_query = "INSERT INTO aluno (nome, cpf) VALUES (%s, %s)"
     cursor.execute(insert_query, (nome, cpf))
     cnx.commit()
