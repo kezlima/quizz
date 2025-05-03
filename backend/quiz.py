@@ -2,21 +2,12 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from mysql.connector import (connection)
 from flask import session
 import json
+import os
+import psycopg2
 
 quiz = Blueprint('quiz', __name__, template_folder='../frontend/template')
 
-try:
-        with open('../banco de dados/progame.conf', 'r') as dadosbd: 
-            databd = json.load(dadosbd)
 
-        cnx = connection.MySQLConnection(user=databd['user'],
-                                    password=databd['pass'],
-                                    host=databd['host'],
-                                    database=databd['database'])
-        
-    
-except Exception as e:
-        print (f"FALHA NA CONEXÃO COM O BANCO: {e}")
 
 @quiz.route('/quiz', methods=['GET'])
 def adicionando_quiz():
@@ -33,12 +24,21 @@ def adicionando_pergunta():
     opcaoC=request.form['opcaoC']
     correta=request.form['correta']
 
-
-    status = createUpdateDelete(
-            "INSERT INTO pergunta_quiz (id_percurso, pergunta, opcao_a, opcao_b, opcao_c, resposta_correta) VALUES (%s, %s, %s, %s, %s, %s)",
-            (bimestre, pergunta, opcaoA, opcaoB, opcaoC, correta),
-            'INSERT'
+    conn = psycopg2.connect(
+            host=os.environ['DB_HOST'],
+            database=os.environ['DB_NAME'],
+            user=os.environ['DB_USER'],
+            password=os.environ['DB_PASSWORD']
         )
+    cursor=conn.cursor()
+    insert_query = """
+        INSERT INTO pergunta_quiz (id_percurso, pergunta, opcao_a, opcao_b, opcao_c, resposta_correta)
+        VALUES (%s, %s, %s, %s, %s, %s)
+    """
+    valores = (bimestre, pergunta, opcaoA, opcaoB, opcaoC, correta)
+
+    cursor.execute(insert_query, valores)
+    conn.commit()
 
     return render_template('adicionando_quiz.html')
 
@@ -49,9 +49,14 @@ def exibir_quiz():
     id_percurso=request.form['id_percurso']
     session['id_percurso'] = id_percurso
    
- 
+    conn = psycopg2.connect(
+            host=os.environ['DB_HOST'],
+            database=os.environ['DB_NAME'],
+            user=os.environ['DB_USER'],
+            password=os.environ['DB_PASSWORD']
+        )
 
-    cursor = cnx.cursor()
+    cursor = conn.cursor()
     cursor.execute("SELECT * FROM pergunta_quiz WHERE id_percurso = %s", (id_percurso,))
     perguntas = cursor.fetchall()
     return render_template("quiz.html", perguntas=perguntas)
@@ -60,7 +65,14 @@ def exibir_quiz():
 @quiz.route("/respostas", methods=["POST"])
 def responder_quiz():
     id_percurso = session.get('id_percurso')
-    cursor = cnx.cursor()
+
+    conn = psycopg2.connect(
+            host=os.environ['DB_HOST'],
+            database=os.environ['DB_NAME'],
+            user=os.environ['DB_USER'],
+            password=os.environ['DB_PASSWORD']
+        )
+    cursor = conn.cursor()
     cursor.execute("SELECT * FROM pergunta_quiz WHERE id_percurso = %s", (id_percurso,))
     perguntas = cursor.fetchall()
 

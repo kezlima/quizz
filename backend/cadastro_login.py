@@ -28,13 +28,13 @@ def cadastro_aluno():
         )
 
     cursor=conn.cursor()
-    insert_query = "INSERT INTO alunos (nome, cpf) VALUES (%s, %s)"
+    insert_query = "INSERT INTO aluno (nome, cpf) VALUES (%s, %s)"
     cursor.execute(insert_query, (nome, cpf))
     conn.commit()
 
     # Atualização
     update_query = """
-        UPDATE aluno
+        UPDATE alunos
         SET quant_moedas = 0, ponto_atual = 0
         WHERE quant_moedas IS NULL OR ponto_atual IS NULL
     """
@@ -45,7 +45,7 @@ def cadastro_aluno():
 
    
     cursor = conn.cursor()
-    query = "SELECT quant_moedas FROM aluno WHERE cpf = %s"
+    query = "SELECT quant_moedas FROM alunos WHERE cpf = %s"
     cursor.execute(query, (cpf,))
     resultado = cursor.fetchone()  # Apenas uma chamada para fetchone()
 

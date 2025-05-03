@@ -27,16 +27,47 @@ try:
         cursor = conn.cursor()
 
         cursor.execute("""
-            CREATE TABLE IF NOT EXISTS alunos (
-                id SERIAL PRIMARY KEY,
-                nome VARCHAR(100),
-                cpf VARCHAR(11) UNIQUE,
-                quant_moedas INT DEFAULT 0,
-                ponto_atual INT DEFAULT 0
-            );
+            CREATE TABLE IF NOT EXISTS aluno (
+               cpf VARCHAR(11) PRIMARY KEY,
+    nome VARCHAR(100),
+    quant_moedas INT DEFAULT 0,
+    ponto_atual INT DEFAULT 0
         """)
 
-        # Adicione aqui outras tabelas se quiser
+
+        cursor.execute= (  """  CREATE TABLE IF NOT EXISTS material ( 
+    id SERIAL PRIMARY KEY, 
+    titulo VARCHAR(100), 
+    conteudo VARCHAR(2000), 
+    id_percurso INT,
+    FOREIGN KEY (id_percurso) REFERENCES percurso(id)"""
+)
+        
+        cursor.execute= (  """  CREATE TABLE IF NOT EXISTS percurso ( 
+    id SERIAL PRIMARY KEY, 
+    nome VARCHAR(100), 
+    descricao VARCHAR(2000), 
+    """
+)
+        cursor.execute= (  """  CREATE TABLE IF NOT EXISTS aluno_material ( 
+    id SERIAL PRIMARY KEY, 
+    aluno_cpf varchar(11), 
+    id_material int, 
+    FOREIGN KEY (aluno_cpf) REFERENCES aluno(cpf),
+    FOREIGN KEY (id_material) REFERENCES material(id)"""
+)     
+        cursor.execute= (  """  CREATE TABLE IF NOT EXISTS pergunta_quiz ( 
+    id SERIAL PRIMARY KEY,
+    id_percurso INT NOT NULL,
+    pergunta TEXT,
+    opcao_a VARCHAR(255),
+    opcao_b VARCHAR(255),
+    opcao_c VARCHAR(255),
+    resposta_correta CHAR(1),
+    FOREIGN KEY (id_percurso) REFERENCES percurso(id)"""
+)     
+        
+        # Adicione aqui outras tabelas se quis
         # cursor.execute(""" CREATE TABLE ... """)
 
         conn.commit()

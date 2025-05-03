@@ -1,20 +1,9 @@
 from flask import Flask, Blueprint, render_template, request
 from mysql.connector import (connection)
 import json
-
+import os
+import psycopg2
 material_tragetoria = Blueprint('material_tragetoria', __name__, template_folder='../frontend/template')
-try:
-        with open('../banco de dados/progame.conf', 'r') as dadosbd: 
-            databd = json.load(dadosbd)
-
-        cnx = connection.MySQLConnection(user=databd['user'],
-                                    password=databd['pass'],
-                                    host=databd['host'],
-                                    database=databd['database'])
-        
-    
-except Exception as e:
-        print (f"FALHA NA CONEXÃO COM O BANCO: {e}")
 
 
 @material_tragetoria.route('/material_cadastro', methods=['GET'])
@@ -30,8 +19,14 @@ def cadastro_percurso():
 
     nome=request.form['nome']
     descricao=request.form['descricao']
-
-    cursor=cnx.cursor()
+    
+    conn = psycopg2.connect(
+            host=os.environ['DB_HOST'],
+            database=os.environ['DB_NAME'],
+            user=os.environ['DB_USER'],
+            password=os.environ['DB_PASSWORD']
+        )
+    cursor=conn.cursor()
     sql="INSERT INTO percurso (nome, descricao) VALUES ( %s, %s) "
     
     tupla=(nome,descricao)
@@ -39,7 +34,7 @@ def cadastro_percurso():
    
     cursor.execute(sql, tupla)
 
-    cnx.commit()
+    conn.commit()
     cursor.close()
 
     return render_template('material.html')
@@ -50,7 +45,13 @@ def cadastrar_material():
 
 @material_tragetoria.route('/tragetoria_material', methods=['GET'] )
 def ver_tragetorias():
-    cursor=cnx.cursor()
+    conn = psycopg2.connect(
+            host=os.environ['DB_HOST'],
+            database=os.environ['DB_NAME'],
+            user=os.environ['DB_USER'],
+            password=os.environ['DB_PASSWORD']
+        )
+    cursor=conn.cursor()
 
     queries = [
         "SELECT  material.titulo, material.conteudo,  material.id FROM material WHERE material.id_percurso = 1 ORDER BY material.etapa ASC",
@@ -85,13 +86,19 @@ def inserindo_material():
     conteudo=request.form['conteudo']
     id_percurso =request.form['id_percurso']
     etapa=request.form['etapa']
-
-    cursor=cnx.cursor()
+    
+    conn = psycopg2.connect(
+            host=os.environ['DB_HOST'],
+            database=os.environ['DB_NAME'],
+            user=os.environ['DB_USER'],
+            password=os.environ['DB_PASSWORD']
+        )
+    cursor=conn.cursor()
     sql="INSERT INTO material (titulo, conteudo) VALUES ( %s, %s, %s, %s) "
     
     tupla=(titulo, conteudo, id_percurso, etapa)
     cursor.execute(sql, tupla)
-    cnx.commit()
+    conn.commit()
     cursor.close()
     return render_template('admin.html')
 
@@ -99,8 +106,13 @@ def inserindo_material():
 def verficando_materiais():
    
         #considerando que em um ano temos 4 bimestre, teremos 4 tragetorias
-
-        cursor=cnx.cursor()
+        conn = psycopg2.connect(
+            host=os.environ['DB_HOST'],
+            database=os.environ['DB_NAME'],
+            user=os.environ['DB_USER'],
+            password=os.environ['DB_PASSWORD']
+        )
+        cursor=conn.cursor()
 
         queries = [
         "SELECT  material.titulo, material.conteudo, material.id FROM material WHERE material.id_percurso = 1 ORDER BY material.etapa ASC",
