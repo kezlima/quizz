@@ -2,8 +2,8 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from mysql.connector import (connection)
-from material_tragetoria import material_tragetoria 
-from cadastro_login import cadastro_login
+from backend.material_tragetoria import material_tragetoria 
+from backend.cadastro_login import cadastro_login
 from moedas import moedas
 from ranking import ranking 
 from quiz import quiz
