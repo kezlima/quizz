@@ -10,7 +10,6 @@ from quiz import quiz
 from flask import send_file
 
 
-from crud import createUpdateDelete
 import json
 app = Flask(__name__,template_folder='../frontend/templates', static_folder='../frontend/static')
 app.secret_key = 'sua_chave_secreta_unica_e_segura'
