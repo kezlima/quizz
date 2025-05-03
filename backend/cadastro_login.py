@@ -1,22 +1,12 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for
 from mysql.connector import (connection)
 import json
+import os
+import psycopg2
 
 
 cadastro_login = Blueprint('cadastro_login', __name__, template_folder='../frontend/template', static_folder='../frontend/static')
 
-try:
-        with open('../banco de dados/progame.conf', 'r') as dadosbd: 
-            databd = json.load(dadosbd)
-
-        cnx = connection.MySQLConnection(user=databd['user'],
-                                    password=databd['pass'],
-                                    host=databd['host'],
-                                    database=databd['database'])
-        
-    
-except Exception as e:
-        print (f"FALHA NA CONEXÃO COM O BANCO: {e}")
 
 @cadastro_login.route('/cadastro', methods=['GET'])
 def pagina_de_cadastro():
@@ -30,10 +20,17 @@ def cadastro_aluno():
     cpf=request.form['cpf']
     session['cpf_cadastro'] = cpf
 
-    cursor=cnx.cursor()
-    insert_query = "INSERT INTO aluno (nome, cpf) VALUES (%s, %s)"
+    conn = psycopg2.connect(
+            host=os.environ['DB_HOST'],
+            database=os.environ['DB_NAME'],
+            user=os.environ['DB_USER'],
+            password=os.environ['DB_PASSWORD']
+        )
+
+    cursor=conn.cursor()
+    insert_query = "INSERT INTO alunos (nome, cpf) VALUES (%s, %s)"
     cursor.execute(insert_query, (nome, cpf))
-    cnx.commit()
+    conn.commit()
 
     # Atualização
     update_query = """
@@ -42,12 +39,12 @@ def cadastro_aluno():
         WHERE quant_moedas IS NULL OR ponto_atual IS NULL
     """
     cursor.execute(update_query)
-    cnx.commit()
+    conn.commit()
 
     print("Operações realizadas com sucesso.")
 
    
-    cursor = cnx.cursor()
+    cursor = conn.cursor()
     query = "SELECT quant_moedas FROM aluno WHERE cpf = %s"
     cursor.execute(query, (cpf,))
     resultado = cursor.fetchone()  # Apenas uma chamada para fetchone()
@@ -75,8 +72,15 @@ def pagina_login():
 def login_aluno():
     cpf = request.form['cpf']
     session['cpf_logado'] = cpf
+    
 
-    cursor = cnx.cursor()
+    conn = psycopg2.connect(
+            host=os.environ['DB_HOST'],
+            database=os.environ['DB_NAME'],
+            user=os.environ['DB_USER'],
+            password=os.environ['DB_PASSWORD']
+        )
+    cursor = conn.cursor()
     query = "SELECT quant_moedas FROM aluno WHERE cpf = %s"
     cursor.execute(query, (cpf,))
     resultado = cursor.fetchone()  # Apenas uma chamada para fetchone()

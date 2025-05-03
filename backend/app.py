@@ -8,23 +8,45 @@ from backend.moedas import moedas
 from backend.ranking import ranking 
 from backend.quiz import quiz
 from flask import send_file
-
+import os
+import psycopg2
 
 import json
 app = Flask(__name__,template_folder='../frontend/templates', static_folder='../frontend/static')
 app.secret_key = 'sua_chave_secreta_unica_e_segura'
-try:
-        with open('../banco de dados/progame.conf', 'r') as dadosbd: 
-            databd = json.load(dadosbd)
 
-        cnx = connection.MySQLConnection(user=databd['user'],
-                                    password=databd['pass'],
-                                    host=databd['host'],
-                                    database=databd['database'])
-        
-    
+
+try:
+        conn = psycopg2.connect(
+            host=os.environ['DB_HOST'],
+            database=os.environ['DB_NAME'],
+            user=os.environ['DB_USER'],
+            password=os.environ['DB_PASSWORD']
+        )
+
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS alunos (
+                id SERIAL PRIMARY KEY,
+                nome VARCHAR(100),
+                cpf VARCHAR(11) UNIQUE,
+                quant_moedas INT DEFAULT 0,
+                ponto_atual INT DEFAULT 0
+            );
+        """)
+
+        # Adicione aqui outras tabelas se quiser
+        # cursor.execute(""" CREATE TABLE ... """)
+
+        conn.commit()
+        cursor.close()
+        conn.close()
+        print("Tabelas criadas com sucesso!")
+
 except Exception as e:
-        print (f"FALHA NA CONEXÃO COM O BANCO: {e}")
+        print("Erro ao criar tabelas:", e)
+
 @app.route("/")
 def debug():
     return render_template('index.html')
