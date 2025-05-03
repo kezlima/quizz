@@ -94,9 +94,9 @@ def inserindo_material():
             password=os.environ['DB_PASSWORD']
         )
     cursor=conn.cursor()
-    sql="INSERT INTO material (titulo, conteudo) VALUES ( %s, %s, %s, %s) "
+    sql="INSERT INTO material (titulo, conteudo, id_percurso) VALUES ( %s, %s, %s) "
     
-    tupla=(titulo, conteudo, id_percurso, etapa)
+    tupla=(titulo, conteudo, id_percurso)
     cursor.execute(sql, tupla)
     conn.commit()
     cursor.close()
