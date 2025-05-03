@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from mysql.connector import (connection)
 from flask import session
 import json
-from  crud import createUpdateDelete
 
 quiz = Blueprint('quiz', __name__, template_folder='../frontend/template')
 

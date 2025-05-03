@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from mysql.connector import (connection)
 from flask import session
-from crud import createUpdateDelete
 moedas = Blueprint('moedas', __name__, template_folder='../frontend/template',  static_folder='../frontend/static')
 import json
 

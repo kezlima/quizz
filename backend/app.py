@@ -4,9 +4,9 @@ from flask import request
 from mysql.connector import (connection)
 from backend.material_tragetoria import material_tragetoria 
 from backend.cadastro_login import cadastro_login
-from moedas import moedas
-from ranking import ranking 
-from quiz import quiz
+from backend.moedas import moedas
+from backend.ranking import ranking 
+from backend.quiz import quiz
 from flask import send_file
 
 

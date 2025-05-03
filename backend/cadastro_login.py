@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for
 from mysql.connector import (connection)
-from crud import createUpdateDelete
 import json
 
 
@@ -31,21 +30,20 @@ def cadastro_aluno():
     cpf=request.form['cpf']
     session['cpf_cadastro'] = cpf
 
-    status = createUpdateDelete(
-            "INSERT INTO aluno (nome, cpf) VALUES (%s, %s)",
-            (nome, cpf),
-            'INSERT'
-        )
+    insert_query = "INSERT INTO aluno (nome, cpf) VALUES (%s, %s)"
+    cursor.execute(insert_query, (nome, cpf))
+    cnx.commit()
 
-   
+    # Atualização
+    update_query = """
+        UPDATE aluno
+        SET quant_moedas = 0, ponto_atual = 0
+        WHERE quant_moedas IS NULL OR ponto_atual IS NULL
+    """
+    cursor.execute(update_query)
+    cnx.commit()
 
-    status = createUpdateDelete(
-            "UPDATE aluno \
-                SET quant_moedas = 0, ponto_atual = 0 \
-                WHERE quant_moedas IS NULL OR ponto_atual IS NULL",
-            None,
-            'UPDATE'
-        )
+    print("Operações realizadas com sucesso.")
 
    
     cursor = cnx.cursor()
